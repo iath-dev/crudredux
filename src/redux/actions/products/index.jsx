@@ -1,6 +1,6 @@
 
-export function createNewProductAction() {
+export function createNewProductAction(product) {
     return () => {
-        console.log('desde action');
+        console.log(product);
     }
 }

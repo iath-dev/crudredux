@@ -4,10 +4,24 @@ import { createNewProductAction } from '../../redux/actions/products';
 
 const NewProduct = () => {
 
+    // State del componente
+    const [product, setProduct] = React.useState({
+        name: '',
+        price: '',
+    })
+
+    const { name, price } = product
+
+    // Utilizar useDispatch y crear una función
     const dispatch = useDispatch();
 
-    const handleAddProduct = () => {
-        dispatch(createNewProductAction());
+    const handleAddProduct = (item) => {
+        dispatch(createNewProductAction(item));
+    }
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setProduct({ ...product, [name]: value });
     }
 
     /**
@@ -17,7 +31,12 @@ const NewProduct = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        handleAddProduct();
+        // Validar formulario
+        if (name.trim() === '' || price <= 0) {
+            return;
+        }
+
+        handleAddProduct(product);
     }
 
     return (
@@ -36,6 +55,8 @@ const NewProduct = () => {
                                     className="form-control"
                                     placeholder="Nombre..."
                                     name="name"
+                                    value={name}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="form-group">
@@ -45,6 +66,8 @@ const NewProduct = () => {
                                     className="form-control"
                                     placeholder="Precio $$$"
                                     name="price"
+                                    value={price}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <button
