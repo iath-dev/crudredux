@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewProductAction } from '../../redux/actions/products';
 
-const NewProduct = () => {
+const NewProduct = ({ history }) => {
 
     // State del componente
     const [product, setProduct] = React.useState({
@@ -14,6 +14,8 @@ const NewProduct = () => {
 
     // Utilizar useDispatch y crear una función
     const dispatch = useDispatch();
+
+    const { loading, error } = useSelector((state) => state.products)
 
     const handleAddProduct = (item) => {
         dispatch(createNewProductAction(item));
@@ -37,6 +39,8 @@ const NewProduct = () => {
         }
 
         handleAddProduct(product);
+
+        history.push('/');
     }
 
     return (
@@ -73,10 +77,13 @@ const NewProduct = () => {
                             <button
                                 type="submit"
                                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
+                                disabled={loading}
                             >
                                 Añadir
                             </button>
                         </form>
+                        {loading ? <p>cargando</p> : null}
+                        {error ? <p className="alert alert-danger p2 mt-4 text-center">Hubo un Error</p> : null}
                     </div>
                 </div>
             </div>

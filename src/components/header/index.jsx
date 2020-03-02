@@ -7,7 +7,7 @@ const Header = () => {
             <div className="container">
                 <h1> <Link to="/" className="text-light"> CRUD - React, Redux, REST API & Axios </Link></h1>
             </div>
-            <Link className="btn btn-danger d-block d-md-inline-block" to="/products/add">Agregar Producto &#43;</Link>
+            <Link className="btn btn-danger btn-block d-md-inline-block" to="/products/add">Agregar Producto &#43;</Link>
         </nav>
     );
 }
