@@ -1,24 +1,9 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Jugo de Zanahoria",
-      "price": "31111"
-    },
-    {
       "id": 2,
       "name": "Jugo de Naranja",
       "price": "1"
-    },
-    {
-      "name": "Jugo de Naranja",
-      "price": "300",
-      "id": 3
-    },
-    {
-      "name": "Rib Eye 800g",
-      "price": "200",
-      "id": 4
     },
     {
       "name": "Jugo de Fresa",
@@ -29,16 +14,6 @@
       "name": "Vodka",
       "price": "150",
       "id": 6
-    },
-    {
-      "name": "Gelatina",
-      "price": "50",
-      "id": 7
-    },
-    {
-      "name": "Gelatina",
-      "price": "200",
-      "id": 8
     },
     {
       "name": "Helado",
