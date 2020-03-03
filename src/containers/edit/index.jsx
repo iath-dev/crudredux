@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { editProduct } from '../../redux/actions/products';
+import { showAlert } from '../../redux/actions/alerts';
 
 const EditProduct = () => {
 
     const [product, setProduct] = React.useState({
         name: '',
         price: '',
-        id: '',
     })
 
     const { id } = useParams();
@@ -15,6 +16,7 @@ const EditProduct = () => {
 
     const dispatch = useDispatch();
     const { productEdit } = useSelector(state => state.products);
+    const { msg } = useSelector(state => state.alert);
 
     const handleChanges = event => {
         const { name, value } = event.target;
@@ -23,6 +25,15 @@ const EditProduct = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
+
+        const { name, price } = product;
+
+        if (name.trim() === '' || parseInt(price) < 1) {
+            dispatch(showAlert('Todos los campos deben de diligenciarse', 'alert alert-danger text-center text-uppercase p3'))
+            return;
+        }
+
+        dispatch(editProduct(product));
     }
 
     React.useEffect(() => {
@@ -45,6 +56,7 @@ const EditProduct = () => {
                         <h1 className="text-center mb-4 font-weight-bold">
                             Editar producto
                         </h1>
+                        {msg ? <p className={msg.classes}>{msg.text}</p> : null}
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Nombre del Producto</label>

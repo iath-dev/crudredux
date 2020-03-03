@@ -3,21 +3,21 @@
     {
       "id": 2,
       "name": "Jugo de Naranja",
-      "price": "1"
+      "price": "120"
     },
     {
-      "name": "Jugo de Fresa",
-      "price": "200",
+      "name": "Jugo de Limon",
+      "price": "123",
       "id": 5
     },
     {
-      "name": "Vodka",
-      "price": "150",
+      "name": "Crema de Ron",
+      "price": "210",
       "id": 6
     },
     {
-      "name": "Helado",
-      "price": "130",
+      "name": "Helado de Menta",
+      "price": "140",
       "id": 9
     }
   ]

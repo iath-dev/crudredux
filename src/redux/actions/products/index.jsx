@@ -116,7 +116,23 @@ const setEditProduct = (item) => ({
 })
 
 export function editProduct(product) {
+    return async (dispatch) => {
+        dispatch(editProductStart());
 
+        try {
+            await AxiosClient.put(`/products/${product.id}`, product);
+            dispatch(editProductSuccess(product));
+            Swal.fire(
+                'Exito',
+                "Se han guardado los cambios",
+                "success"
+            )
+        } catch (error) {
+            console.log(error);
+            dispatch(editProductError())
+        }
+
+    };
 }
 
 const editProductStart = () => ({

@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR, DOWNLOAD_PRODUCTS_START, DOWNLOAD_PRODUCT_SUCCESS, DOWNLOAD_PRODUCTS_ERROR, DELETE_PRODUCT_START, DELETE_PRODUCT_ERROR, DELETE_PRODUCT_SUCCESS, SELECT_EDIT_PRODUCT } from "../../types";
+import { ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_ERROR, DOWNLOAD_PRODUCTS_START, DOWNLOAD_PRODUCT_SUCCESS, DOWNLOAD_PRODUCTS_ERROR, DELETE_PRODUCT_START, DELETE_PRODUCT_ERROR, DELETE_PRODUCT_SUCCESS, SELECT_EDIT_PRODUCT, EDIT_PRODUCT_START, EDIT_PRODUCT_ERROR, EDIT_PRODUCT_SUCCESS } from "../../types";
 
 // Cada Reducer tiene su propio State
 
@@ -13,6 +13,7 @@ export default function(state = initial, action) {
     switch (action.type) {
         case ADD_PRODUCT:
         case DOWNLOAD_PRODUCTS_START:
+        case EDIT_PRODUCT_START:
         case DELETE_PRODUCT_START:
             return {
                 ...state,
@@ -28,6 +29,7 @@ export default function(state = initial, action) {
             }
         case ADD_PRODUCT_ERROR:
         case DOWNLOAD_PRODUCTS_ERROR:
+        case EDIT_PRODUCT_ERROR:
         case DELETE_PRODUCT_ERROR:
             return {
                 ...state,
@@ -52,6 +54,14 @@ export default function(state = initial, action) {
             return {
                 ...state,
                 productEdit: action.payload,
+            }
+        case EDIT_PRODUCT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                products: state.products.map(p => p.id === action.payload.id ? action.payload : p),
+                productEdit: null
             }
         default:
             return state;
